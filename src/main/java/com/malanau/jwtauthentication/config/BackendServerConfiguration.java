@@ -2,7 +2,7 @@ package com.malanau.jwtauthentication.config;
 
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
-import com.malanau.jwtauthentication.auth.application.authenticate.UserAuthenticator;
+import com.malanau.jwtauthentication.auth.application.validate.AuthenticationTokenValidator;
 import com.malanau.jwtauthentication.middleware.JwtAuthMiddleware;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -18,11 +18,12 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 @AllArgsConstructor
 public class BackendServerConfiguration {
 
-  private final UserAuthenticator userAuthenticator;
+  private final AuthenticationTokenValidator authenticationTokenValidator;
 
   @Bean
   public SecurityFilterChain securityFilterChain(final HttpSecurity http) throws Exception {
-    http.addFilterBefore(new JwtAuthMiddleware(userAuthenticator), BasicAuthenticationFilter.class)
+    http.addFilterBefore(
+            new JwtAuthMiddleware(authenticationTokenValidator), BasicAuthenticationFilter.class)
         .csrf(csrf -> csrf.disable())
         .sessionManagement(session -> session.sessionCreationPolicy(STATELESS))
         .authorizeHttpRequests(

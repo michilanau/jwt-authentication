@@ -1,20 +1,23 @@
 package com.malanau.jwtauthentication.middleware;
 
-import com.malanau.jwtauthentication.auth.application.authenticate.UserAuthenticator;
+import com.malanau.jwtauthentication.auth.application.validate.AuthenticationTokenValidator;
+import com.malanau.jwtauthentication.user.domain.User;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Collections;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpHeaders;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 @AllArgsConstructor
 public class JwtAuthMiddleware extends OncePerRequestFilter {
 
-  private final UserAuthenticator userAuthenticator;
+  private final AuthenticationTokenValidator authenticationTokenValidator;
 
   @Override
   protected void doFilterInternal(
@@ -29,8 +32,10 @@ public class JwtAuthMiddleware extends OncePerRequestFilter {
 
       if (authElements.length == 2 && "Bearer".equals(authElements[0])) {
         try {
+          final User user = authenticationTokenValidator.validateToken(authElements[1]);
           SecurityContextHolder.getContext()
-              .setAuthentication(userAuthenticator.validateToken(authElements[1]));
+              .setAuthentication(
+                  new UsernamePasswordAuthenticationToken(user, null, Collections.emptyList()));
         } catch (final RuntimeException e) {
           SecurityContextHolder.clearContext();
           throw e;
