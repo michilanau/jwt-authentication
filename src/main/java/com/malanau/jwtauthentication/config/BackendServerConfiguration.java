@@ -3,7 +3,7 @@ package com.malanau.jwtauthentication.config;
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
 import com.malanau.jwtauthentication.auth.application.validate.AuthenticationTokenValidator;
-import com.malanau.jwtauthentication.middleware.JwtAuthMiddleware;
+import com.malanau.jwtauthentication.middleware.BearerAuthMiddleware;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,7 +23,7 @@ public class BackendServerConfiguration {
   @Bean
   public SecurityFilterChain securityFilterChain(final HttpSecurity http) throws Exception {
     http.addFilterBefore(
-            new JwtAuthMiddleware(authenticationTokenValidator), BasicAuthenticationFilter.class)
+            new BearerAuthMiddleware(authenticationTokenValidator), BasicAuthenticationFilter.class)
         .csrf(csrf -> csrf.disable())
         .sessionManagement(session -> session.sessionCreationPolicy(STATELESS))
         .authorizeHttpRequests(

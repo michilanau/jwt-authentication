@@ -15,7 +15,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 @AllArgsConstructor
-public class JwtAuthMiddleware extends OncePerRequestFilter {
+public class BearerAuthMiddleware extends OncePerRequestFilter {
 
   private final AuthenticationTokenValidator authenticationTokenValidator;
 
