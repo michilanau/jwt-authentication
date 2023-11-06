@@ -7,7 +7,7 @@ This API is composed by three endpoints:
 - /login
 - /register
 
-`/health-check` is the only endpoint that requires token authentication to be accesible.
+`/health-check` is the only endpoint that requires token authentication to be accessible.
 
 `/login` and `/register` will respond the token.
 
