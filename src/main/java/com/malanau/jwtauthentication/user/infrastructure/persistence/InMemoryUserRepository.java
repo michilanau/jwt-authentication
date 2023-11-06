@@ -3,7 +3,6 @@ package com.malanau.jwtauthentication.user.infrastructure.persistence;
 import com.malanau.jwtauthentication.user.domain.Login;
 import com.malanau.jwtauthentication.user.domain.Password;
 import com.malanau.jwtauthentication.user.domain.User;
-import com.malanau.jwtauthentication.user.domain.UserAlreadyExists;
 import com.malanau.jwtauthentication.user.domain.UserRepository;
 import java.util.HashMap;
 import java.util.Optional;
@@ -29,10 +28,6 @@ public final class InMemoryUserRepository implements UserRepository {
 
   @Override
   public void save(final User user) {
-    if (!users.containsKey(user.getLogin())) {
-      users.put(user.getLogin(), user.getPassword());
-    } else {
-      throw new UserAlreadyExists(user.getLogin());
-    }
+    users.put(user.getLogin(), user.getPassword());
   }
 }
