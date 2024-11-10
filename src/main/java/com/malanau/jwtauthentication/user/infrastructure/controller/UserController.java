@@ -1,6 +1,6 @@
 package com.malanau.jwtauthentication.user.infrastructure.controller;
 
-import com.malanau.jwtauthentication.shared.application.ErrorResponse;
+import com.malanau.jwtauthentication.shared.infrastructure.ErrorResponse;
 import com.malanau.jwtauthentication.user.application.UserResponse;
 import com.malanau.jwtauthentication.user.application.authenticate.UserAuthRequest;
 import com.malanau.jwtauthentication.user.application.authenticate.UserAuthenticator;

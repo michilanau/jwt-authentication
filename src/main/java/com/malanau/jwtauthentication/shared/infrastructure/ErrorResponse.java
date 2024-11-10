@@ -1,4 +1,4 @@
-package com.malanau.jwtauthentication.shared.application;
+package com.malanau.jwtauthentication.shared.infrastructure;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

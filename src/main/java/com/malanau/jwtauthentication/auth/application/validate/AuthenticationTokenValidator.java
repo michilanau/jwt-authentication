@@ -22,6 +22,6 @@ public class AuthenticationTokenValidator {
 
     final Optional<User> user = userRepository.search(login);
 
-    return user.get();
+    return user.orElse(null);
   }
 }

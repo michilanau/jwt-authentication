@@ -3,7 +3,7 @@ package com.malanau.jwtauthentication.config;
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
 import com.malanau.jwtauthentication.auth.application.validate.AuthenticationTokenValidator;
-import com.malanau.jwtauthentication.middleware.BearerAuthMiddleware;
+import com.malanau.jwtauthentication.config.middleware.BearerAuthMiddleware;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,4 +1,4 @@
-package com.malanau.jwtauthentication.middleware;
+package com.malanau.jwtauthentication.config.middleware;
 
 import com.malanau.jwtauthentication.auth.application.validate.AuthenticationTokenValidator;
 import com.malanau.jwtauthentication.user.domain.User;
